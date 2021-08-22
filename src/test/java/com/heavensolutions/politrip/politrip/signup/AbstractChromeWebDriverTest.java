@@ -9,7 +9,11 @@ import static org.testng.Assert.*;
 
 public abstract class AbstractChromeWebDriverTest {
 
-    protected WebDriver driver;
+    protected static WebDriver driver;
+
+    public AbstractChromeWebDriverTest() {
+        super();
+    }
 
     @BeforeSuite
     public void beforeSuite() {

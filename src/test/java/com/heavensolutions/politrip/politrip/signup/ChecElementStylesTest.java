@@ -1,7 +1,6 @@
 package com.heavensolutions.politrip.politrip.signup;
 
 
-import com.codeborne.selenide.Condition;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
@@ -10,7 +9,6 @@ import org.testng.annotations.Test;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import static com.codeborne.selenide.Selenide.*;
 
 import static org.testng.Assert.assertEquals;
 
@@ -31,7 +29,6 @@ public class ChecElementStylesTest extends AbstractChromeWebDriverTest {
         List<WebElement> optionsDrp = drpHeard.getOptions();
         List<String> optionsText = new ArrayList<String>();
         for(WebElement o : optionsDrp) {
-            System.out.println(o.getText());
             if (o.isEnabled()) {
                 optionsText.add(o.getText());
             }
