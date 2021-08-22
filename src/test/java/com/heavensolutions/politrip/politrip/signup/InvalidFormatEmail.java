@@ -10,9 +10,11 @@ import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import java.io.FileReader;
+import java.io.*;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
 import com.opencsv.CSVReader;
@@ -23,8 +25,8 @@ public class InvalidFormatEmail extends AbstractChromeWebDriverTest{
 
     // Create the Data Provider and give the data provider a name
     @DataProvider(name = "wrong-emails-format-csv-data-provider")
-    public Iterator<String[]> wrongEmailsFormatCSVDataProvider() {
-        return readFromCSVFile("./src/test/resources/wrongEmailsFormat.csv").iterator();
+    public Object[] wrongEmailsFormatCSVDataProvider() {
+        return readFromCSVFile("./src/test/resources/wrongEmailsFormat.txt").toArray();
     }
 
     @Test(dataProvider = "wrong-emails-format-csv-data-provider")
@@ -74,14 +76,20 @@ public class InvalidFormatEmail extends AbstractChromeWebDriverTest{
         assertEquals(actualURL, expectedURL);
     }
 
-    private List<String[]> readFromCSVFile(String csvFilePath) {
+    private List<String> readFromCSVFile(String csvFilePath) {
+        List<String> lines = new ArrayList<String>();
         try {
-            CSVReader reader = new CSVReader(new FileReader(csvFilePath));
-            List<String[]> data = reader.readAll();
-            return data;
-        } catch (Exception e) {
+            Scanner scanner = new Scanner(new File(csvFilePath));
+
+            while (scanner.hasNextLine()) {
+                lines.add(scanner.nextLine());
+            }
+            scanner.close();
+
+        } catch (FileNotFoundException e) {
             e.printStackTrace();
-            throw new RuntimeException(e);
         }
+
+        return lines;
     }
 }
