@@ -1,12 +1,7 @@
 package com.heavensolutions.politrip.politrip.signup;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -15,20 +10,18 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import java.util.concurrent.TimeUnit;
 
 import static org.testng.Assert.assertEquals;
 
-public class InvalidFormatEmail extends AbstractChromeWebDriverTest{
-
+public class ValidFormatEmail extends AbstractChromeWebDriverTest{
     // Create the Data Provider and give the data provider a name
     @DataProvider(name = "wrong-emails-format-csv-data-provider")
-    public Object[] wrongEmailsFormatCSVDataProvider() {
-        return readFromTextFile("./src/test/resources/wrongEmailsFormat.txt").toArray();
+    public Object[] validEmailsFormatCSVDataProvider() {
+        return readFromTextFile("./src/test/resources/validEmailsFormat.txt").toArray();
     }
 
     @Test(dataProvider = "wrong-emails-format-csv-data-provider")
-    public void invalidFormatEmail(Object emailAddress) throws InterruptedException {
+    public void validFormatEmail(Object emailAddress) {
         driver.get("https://politrip.com/account/sign-up");
 
         //indentify elements
@@ -47,37 +40,20 @@ public class InvalidFormatEmail extends AbstractChromeWebDriverTest{
 
         WebElement errorElement = driver.findElement(By.xpath("//*[@id=\"sign-up-email-div\"]/app-form-control-error-message"));
         List<WebElement> childs = errorElement.findElements(By.xpath("./child::*"));
+        String textError = "";
         if(childs.size() != 0)
         {
-            String textError = childs.get(0).getText();
-            System.out.println("Text error:" + textError);
-            assertEquals(textError, "Please enter a valid email address");
+            textError = childs.get(0).getText();
+
         }
-        else
-        {
-            Assert.fail("Text message for the wrong email format does not appear");
-        }
+        assertEquals(textError, "", "The email adrres is considered wrong");
 
-        // daca mesajul de format gresit apare verificam sa nu cumva sa putem crea contul cu emailul formatat gresit
-        driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
-        WebElement signUp =  new WebDriverWait(driver, 1).until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\" qa_loader-button\"]")));
-        Actions actions = new Actions(driver);
-        actions.moveToElement(signUp);
-
-        ((JavascriptExecutor)driver).executeScript("arguments[0].click();", signUp);
-
-        // verify if is not redirected
-        Thread.sleep(2000);
-
-        String expectedURL = "https://politrip.com/account/sign-up";
-        String actualURL = driver.getCurrentUrl();
-        assertEquals(actualURL, expectedURL);
     }
 
-    private List<String> readFromTextFile(String csvFilePath) {
+    private List<String> readFromTextFile(String TextFilePath) {
         List<String> lines = new ArrayList<String>();
         try {
-            Scanner scanner = new Scanner(new File(csvFilePath));
+            Scanner scanner = new Scanner(new File(TextFilePath));
 
             while (scanner.hasNextLine()) {
                 lines.add(scanner.nextLine());
