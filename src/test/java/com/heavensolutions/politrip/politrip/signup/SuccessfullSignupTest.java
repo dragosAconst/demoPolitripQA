@@ -31,7 +31,7 @@ public class SuccessfullSignupTest extends AbstractChromeWebDriverTest{
         // complete form and submit
         firstName.sendKeys("Dragos");
         lastName.sendKeys("Aconstantinesei");
-        email.sendKeys("demo4@gmail.com");
+        email.sendKeys("demoo@gmail.com");
         password.sendKeys("testDemo1234!");
         confirmPassword.sendKeys("testDemo1234!");
         driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
