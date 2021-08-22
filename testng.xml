@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <test verbose="2" preserve-order="true" name="C:/Facultate/HeavenSolution/demoPolitripQA/src/test">
+        <classes>
+            <class name="com.heavensolutions.politrip.politrip.signup.ChecElementStylesTest">
+                <methods>
+                    <include name="testLabelsForm"/>
+                </methods>
+            </class>
+            <class name="com.heavensolutions.politrip.politrip.signup.InvalidFormatEmail">
+                <methods>
+                    <include name="invalidFormatEmail"/>
+                </methods>
+            </class>
+            <class name="com.heavensolutions.politrip.politrip.signup.PasswordDifferent">
+                <methods>
+                    <include name="chechDifferentPassword"/>
+                </methods>
+            </class>
+            <class name="com.heavensolutions.politrip.politrip.signup.PasswordOnlyNumbersMessageTest">
+                <methods>
+                    <include name="testPasswordOnlyNumbersMessage"/>
+                </methods>
+            </class>
+            <class name="com.heavensolutions.politrip.politrip.signup.RequiredFields">
+                <methods>
+                    <include name="submitWithBlankFields"/>
+                </methods>
+            </class>
+            <class name="com.heavensolutions.politrip.politrip.signup.ShortPassMessageTest">
+                <methods>
+                    <include name="testShortPassMessage"/>
+                </methods>
+            </class>
+            <class name="com.heavensolutions.politrip.politrip.signup.SuccessfullSignupTest">
+                <methods>
+                    <include name="testSuccesfullSignup"/>
+                </methods>
+            </class>
+            <class name="com.heavensolutions.politrip.politrip.signup.ValidFormatEmail">
+                <methods>
+                    <include name="validFormatEmail"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

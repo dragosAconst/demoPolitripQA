@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [All Test Suite]">
+  <test thread-count="5" name="C:/Facultate/HeavenSolution/demoPolitripQA(failed)">
+    <classes>
+      <class name="com.heavensolutions.politrip.politrip.signup.SuccessfullSignupTest">
+        <methods>
+          <include name="afterSuite"/>
+          <include name="testSuccesfullSignup"/>
+          <include name="beforeSuite"/>
+          <include name="pressLogout"/>
+        </methods>
+      </class> <!-- com.heavensolutions.politrip.politrip.signup.SuccessfullSignupTest -->
+    </classes>
+  </test> <!-- C:/Facultate/HeavenSolution/demoPolitripQA(failed) -->
+</suite> <!-- Failed suite [All Test Suite] -->
