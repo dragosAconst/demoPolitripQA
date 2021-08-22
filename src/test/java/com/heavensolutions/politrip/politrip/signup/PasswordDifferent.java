@@ -42,7 +42,7 @@ public class PasswordDifferent extends AbstractChromeWebDriverTest{
         WebElement label = driver.findElement(By.id("sign-up-confirm-password-label"));
         actionProvider.moveToElement(label).click().build().perform();
 
-        WebElement errorElement = driver.findElement(By.xpath("//*[@id=\"sign-up-confirm-password-div\"]/app-form-control-error-message"));
+        WebElement errorElement = driver.findElement(By.xpath("//*[@id=\"sign-up-confirm-password-div\"]/app-form-control-error-message/em"));
         List<WebElement> childs = errorElement.findElements(By.xpath("./child::*"));
         if(childs.size() != 0)
         {
